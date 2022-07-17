@@ -7,12 +7,16 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/netinfo": "^9.3.0",
     "@stream-io/flat-list-mvcp": "^0.10.2",
+    "fbjs": "^3.0.4",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "react": "18.0.0",
     "react-native": "0.69.1",
     "react-native-document-picker": "^8.1.1",
