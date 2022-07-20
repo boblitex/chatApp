@@ -3,7 +3,7 @@ import React from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
 import {ChannelList} from 'stream-chat-react-native';
 
-const Chat = ({navigation: {navigate}}) => {
+const ChatList = ({navigation: {navigate}}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View
@@ -47,4 +47,4 @@ const Chat = ({navigation: {navigate}}) => {
   );
 };
 
-export default Chat;
+export default ChatList;
