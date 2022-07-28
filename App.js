@@ -1,17 +1,39 @@
-import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useEffect} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {OverlayProvider} from 'stream-chat-react-native';
+import {OverlayProvider, Chat} from 'stream-chat-react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {StreamChat} from 'stream-chat';
+import Navigation from './navigation/Navigation';
 
 const App = () => {
+  const client = StreamChat.getInstance(process.env.STREAM_CHAT_API_KEY);
+  useEffect(() => {
+    (async () => {
+      if (!client.userID) {
+        try {
+          await client.connectUser(
+            {
+              id: 'boblitex',
+              name: 'Jude Bobinihi',
+            },
+            client.devToken('boblitex'),
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, [client]);
+
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{flex: 1}}>
       <OverlayProvider>
-        <SafeAreaView>
-          <View style={{alignItems: 'center'}}>
-            <Text style={{fontWeight: 'bold'}}>CHAT APP </Text>
-          </View>
-        </SafeAreaView>
+        <Chat client={client}>
+          <NavigationContainer>
+            <Navigation />
+          </NavigationContainer>
+        </Chat>
       </OverlayProvider>
     </GestureHandlerRootView>
   );
